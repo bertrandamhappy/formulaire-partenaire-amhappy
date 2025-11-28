@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devenez Partenaire Amhappy 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .benefits {
+            background: #f8f9ff;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .benefit {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .benefit h3 {
+            color: #667eea;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .benefit p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9ff;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background: white;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .file-label:hover {
+            background: #f8f9ff;
+            border-color: #764ba2;
+        }
+
+        .file-preview {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .file-preview.active {
+            display: block;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9ff;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .file-item img {
+            max-width: 60px;
+            max-height: 60px;
+            border-radius: 4px;
+        }
+
+        .signature-pad {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: crosshair;
+            background: white;
+            touch-action: none;
+        }
+
+        .signature-controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-clear {
+            padding: 8px 16px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+
+        .btn-clear:hover {
+            background: #c0392b;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 4px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 4em;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .help-text {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .alert {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Devenez Partenaire Amhappy !</h1>
+            <p>Rejoignez notre réseau et boostez votre visibilité... Gratuitement !</p>
+        </div>
+
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">📢</div>
+                <h3>Visibilité Gratuite</h3>
+                <p>Communiquez sur notre plateforme et réseaux sociaux</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">📈</div>
+                <h3>Boost de Ventes</h3>
+                <p>Augmentez votre fréquentation facilement</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">👥</div>
+                <h3>Milliers d'Utilisateurs</h3>
+                <p>Touchez des milliers de clients potentiels</p>
+            </div>
+        </div>
+
+        <div class="form-content">
+            <div id="alertBox"></div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <form id="partnerForm">
+                <!-- Section 1: Informations Entreprise -->
+                <div class="form-section">
+                    <h2 class="section-title">🏢 Votre Entreprise</h2>
+                    
+                    <div class="form-group">
+                        <label>Nom de l'entreprise <span class="required">*</span></label>
+                        <input type="text" name="entreprise" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Secteur d'activité et descriptif <span class="required">*</span></label>
+                        <textarea name="secteur" required placeholder="Ex: Restaurant gastronomique spécialisé en cuisine française..."></textarea>
+                        <div class="help-text">Décrivez votre activité en quelques phrases</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre de salariés dans votre entreprise</label>
+                        <select name="nb_salaries">
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="0">Auto-entrepreneur / Indépendant</option>
+                            <option value="1-5">1 à 5 salariés</option>
+                            <option value="6-10">6 à 10 salariés</option>
+                            <option value="11-20">11 à 20 salariés</option>
+                            <option value="21-50">21 à 50 salariés</option>
+                            <option value="51-100">51 à 100 salariés</option>
+                            <option value="100+">Plus de 100 salariés</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Avez-vous un CSE en place ?</label>
+                        <select name="cse_existe" id="cseExiste">
+                            <option value="non">Non</option>
+                            <option value="oui">Oui</option>
+                        </select>
+                    </div>
+
+                    <div id="cseDetails" style="display: none;">
+                        <div class="form-group">
+                            <label>Coordonnées du CSE (nom, téléphone, email)</label>
+                            <textarea name="cse_coordonnees" placeholder="Ex: Jean Dupont - 06.12.34.56.78 - jean.dupont@entreprise.fr"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>SIRET <span class="required">*</span></label>
+                        <input type="text" name="siret" required placeholder="123 456 789 00012">
+                    </div>
+                </div>
+
+                <!-- Section 2: Contact -->
+                <div class="form-section">
+                    <h2 class="section-title">👤 Votre Contact</h2>
+                    
+                    <div class="form-group">
+                        <label>Nom et Prénom du contact <span class="required">*</span></label>
+                        <input type="text" name="contact_nom" required placeholder="M./Mme Dupont Jean">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fonction <span class="required">*</span></label>
+                        <input type="text" name="fonction" required placeholder="Ex: Gérant, Directeur Commercial...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Téléphone <span class="required">*</span></label>
+                        <input type="tel" name="telephone" required placeholder="06.12.34.56.78">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" name="email" required placeholder="contact@entreprise.fr">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Adresse complète <span class="required">*</span></label>
+                        <textarea name="adresse" required placeholder="12 rue de la République, 89000 Auxerre"></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 3: Votre Offre -->
+                <div class="form-section">
+                    <h2 class="section-title">🎁 Votre Offre Partenaire</h2>
+                    
+                    <div class="form-group">
+                        <label>Titre de l'offre <span class="required">*</span></label>
+                        <input type="text" name="titre_offre" required placeholder="Ex: -15% sur tous nos menus">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descriptif détaillé de l'offre <span class="required">*</span></label>
+                        <textarea name="descriptif_offre" required placeholder="Ex: Remise de 15% sur l'ensemble de nos menus du midi et du soir, hors boissons, valable 7j/7"></textarea>
+                        <div class="help-text">Précisez le pourcentage, montant ou produit/service offert</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre maximum de personnes pouvant profiter de l'offre</label>
+                        <input type="number" name="nb_personnes" placeholder="Ex: 4" min="1">
+                        <div class="help-text">Par visite ou par utilisation</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Code promo (si applicable)</label>
+                        <input type="text" name="code_promo" placeholder="Ex: AMHAPPY15">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lien vers votre site internet</label>
+                        <input type="url" name="site_web" placeholder="https://www.votre-site.fr">
+                    </div>
+                </div>
+
+                <!-- Section 4: Visuels -->
+                <div class="form-section">
+                    <h2 class="section-title">📸 Vos Visuels</h2>
+                    
+                    <div class="form-group">
+                        <label>Logo de votre entreprise <span class="required">*</span></label>
+                        <div class="file-upload">
+                            <input type="file" id="logoFile" name="logo" class="file-input" accept="image/*" required>
+                            <label for="logoFile" class="file-label">
+                                <span>📁</span>
+                                <span>Cliquez pour télécharger votre logo</span>
+                            </label>
+                        </div>
+                        <div id="logoPreview" class="file-preview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Photos de votre établissement ou produits (max 3)</label>
+                        <div class="file-upload">
+                            <input type="file" id="photosFile" name="photos" class="file-input" accept="image/*" multiple>
+                            <label for="photosFile" class="file-label">
+                                <span>🖼️</span>
+                                <span>Cliquez pour ajouter des photos</span>
+                            </label>
+                        </div>
+                        <div id="photosPreview" class="file-preview"></div>
+                        <div class="help-text">Format JPG ou PNG, max 5 Mo par photo</div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Signature -->
+                <div class="form-section">
+                    <h2 class="section-title">✍️ Signature Électronique</h2>
+                    
+                    <div class="form-group">
+                        <label>Signez ici pour valider votre accord <span class="required">*</span></label>
+                        <canvas id="signaturePad" class="signature-pad" width="700" height="200"></canvas>
+                        <div class="signature-controls">
+                            <button type="button" class="btn-clear" id="clearSignature">🗑️ Effacer</button>
+                        </div>
+                        <div class="help-text">Utilisez votre souris ou votre doigt pour signer</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date <span class="required">*</span></label>
+                        <input type="text" name="date" id="dateField" readonly>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="accord" name="accord" required>
+                        <label for="accord">
+                            J'accepte que ce partenariat soit gratuit et je m'engage à appliquer l'offre proposée aux adhérents AMHAPPY. J'accepte également que la SAS AMHAPPY communique sur ce pa[...] 
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    🚀 Valider mon partenariat
+                </button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✅</div>
+                <h2>Félicitations !</h2>
+                <p style="font-size: 1.2em; color: #666; margin: 20px 0;">
+                    Votre formulaire de partenariat a été envoyé avec succès !
+                </p>
+                <p style="color: #999;">
+                    Nous avons bien reçu toutes vos informations et vous contacterons très prochainement.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // CONFIGURATION EMAILJS
+        const EMAILJS_CONFIG = {
+            publicKey: 'aVdJ6UtHLFPlv18Uh',
+            serviceId: 'service_hn48tsl',
+            templateId: 'template_4fb1y9v'
+        };
+
+        // Initialisation EmailJS
+        emailjs.init(EMAILJS_CONFIG.publicKey);
+
+        // Gestion de la progression
+        const form = document.getElementById('partnerForm');
+        const progressFill = document.getElementById('progressFill');
+        const inputs = form.querySelectorAll('input:required, textarea:required, select:required');
+        
+        function updateProgress() {
+            let filled = 0;
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    if (input.checked) filled++;
+                } else if (input.value.trim() !== '') {
+                    filled++;
+                }
+            });
+            const progress = (filled / inputs.length) * 100;
+            progressFill.style.width = progress + '%';
+        }
+
+        form.addEventListener('input', updateProgress);
+        form.addEventListener('change', updateProgress);
+
+        // Gestion du CSE
+        document.getElementById('cseExiste').addEventListener('change', function() {
+            const cseDetails = document.getElementById('cseDetails');
+            if (this.value === 'oui') {
+                cseDetails.style.display = 'block';
+            } else {
+                cseDetails.style.display = 'none';
+            }
+        });
+
+        // Variables pour stocker les fichiers
+        let logoBase64 = '';
+        let photosBase64 = [];
+
+        // Gestion des fichiers logo
+        document.getElementById('logoFile').addEventListener('change', function(e) {
+            const preview = document.getElementById('logoPreview');
+            preview.innerHTML = '';
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    logoBase64 = e.target.result;
+                    preview.innerHTML = `
+                        <div class="file-item">
+                            <img src="${e.target.result}" alt="Logo">
+                            <span>${file.name}</span>
+                        </div>
+                    `;
+                    preview.classList.add('active');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Gestion des photos
+        document.getElementById('photosFile').addEventListener('change', function(e) {
+            const preview = document.getElementById('photosPreview');
+            preview.innerHTML = '';
+            photosBase64 = [];
+            const files = Array.from(e.target.files).slice(0, 3);
+            
+            let loaded = 0;
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    photosBase64.push(e.target.result);
+                    preview.innerHTML += `
+                        <div class="file-item">
+                            <img src="${e.target.result}" alt="Photo ${index + 1}">
+                            <span>${file.name}</span>
+                        </div>
+                    `;
+                    preview.classList.add('active');
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+
+        // Gestion de la signature
+        const canvas = document.getElementById('signaturePad');
+        const ctx = canvas.getContext('2d');
+        let drawing = false;
+        let hasSignature = false;
+
+        function startDrawing(e) {
+            drawing = true;
+            hasSignature = true;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        function draw(e) {
+            if (!drawing) return;
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            ctx.lineTo(x, y);
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            drawing = false;
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        document.getElementById('clearSignature').addEventListener('click', function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hasSignature = false;
+        });
+
+        // Date automatique
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('fr-FR');
+        document.getElementById('dateField').value = dateStr;
+
+        // Fonction d'affichage d'alerte
+        function showAlert(message, type = 'info') {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.innerHTML = `<div class="alert ${type}">${message}</div>`;
+            setTimeout(() => {
+                alertBox.innerHTML = '';
+            }, 5000);
+        }
+
+        // Soumission du formulaire
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!hasSignature) {
+                showAlert('⚠️ Merci de signer le formulaire avant de valider', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Envoi en cours...';
+
+            // Récupération de la signature en base64
+            const signatureBase64 = canvas.toDataURL();
+
+            // Préparation des données du formulaire
+            const formData = new FormData(form);
+            const templateParams = {
+                to_email: 'amhappy@uneterredelyonne.com',
+                entreprise: formData.get('entreprise'),
+                secteur: formData.get('secteur'),
+                nb_salaries: formData.get('nb_salaries'),
+                cse_existe: formData.get('cse_existe'),
+                cse_coordonnees: formData.get('cse_coordonnees'),
+                siret: formData.get('siret'),
+                contact_nom: formData.get('contact_nom'),
+                fonction: formData.get('fonction'),
+                telephone: formData.get('telephone'),
+                email: formData.get('email'),
+                adresse: formData.get('adresse'),
+                titre_offre: formData.get('titre_offre'),
+                descriptif_offre: formData.get('descriptif_offre'),
+                nb_personnes: formData.get('nb_personnes') || 'Non spécifié',
+                code_promo: formData.get('code_promo') || 'Aucun',
+                site_web: formData.get('site_web') || 'Non renseigné',
+                date: formData.get('date'),
+                signature: signatureBase64,
+                logo: logoBase64,
+                photos: photosBase64.join('|||') // Séparateur pour plusieurs photos
+            };
+
+            try {
+                const response = await emailjs.send(
+                    EMAILJS_CONFIG.serviceId,
+                    EMAILJS_CONFIG.templateId,
+                    templateParams
+                );
+                
+                console.log('Email envoyé avec succès!', response.status, response.text);
+                form.style.display = 'none';
+                document.getElementById('successMessage').classList.add('active');
+                
+            } catch (error) {
+                console.error('Erreur lors de l'envoi:', error);
+                showAlert('❌ Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.', 'error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 Valider mon partenariat';
+            }
+        });
+    </script>
+</body>
+</html>
